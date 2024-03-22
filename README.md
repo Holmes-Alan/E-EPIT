@@ -12,8 +12,7 @@ Enhance EPIT for Light Field Image Super-Resolution
 - 
 
 ## Commands for Test
-* **Run **`test.py`** to perform network inference. Example for test [model_name] on 5x5 angular resolution for 2x/4xSR:**
+* put the image under /data_for_inference/SR_5x5_4x folder
   ```
-  $ python test.py --model_name [model_name] --angRes 5 --scale_factor 2  
-  $ python test.py --model_name [model_name] --angRes 5 --scale_factor 4 
+  $ python test.py --model_name EPIT-bs --angRes 5 --scale_factor 4 
   ```
