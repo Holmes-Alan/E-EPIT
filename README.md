@@ -14,5 +14,5 @@ Enhance EPIT for Light Field Image Super-Resolution
 ## Commands for Test
 * put the image under /data_for_inference/SR_5x5_4x folder
   ```
-  $ python test.py --model_name EPIT-bs --angRes 5 --scale_factor 4 
+  $ python inference_enhance.py --model_name EPIT_bs --angRes 5 --scale_factor 4 
   ```
