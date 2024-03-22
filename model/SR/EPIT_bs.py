@@ -1,11 +1,3 @@
-'''
-@Article{EPIT,
-    author    = {Liang, Zhengyu and Wang, Yingqian and Wang, Longguang and Yang, Jungang and Zhou Shilin and Guo, Yulan},
-    title     = {Learning Non-Local Spatial-Angular Correlation for Light Field Image Super-Resolution},
-    journal   = {arXiv preprint arXiv:2302.08058},
-    year      = {2023},
-}
-'''
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -40,36 +32,13 @@ class get_model(nn.Module):
             AltFilter(self.angRes, channels),
             AltFilter(self.angRes, channels),
         )
-
-        for param in self.conv_init0.parameters():
-            param.requires_grad = False
-        for param in self.conv_init.parameters():
-            param.requires_grad = False
-        # for param in self.altblock.parameters():
-        #     param.requires_grad = False
         self.mpi_conv = nn.Sequential(
             ResidualGroup(n_feat=channels, n_resblocks=20),
             ResidualGroup(n_feat=channels, n_resblocks=20),
         )
-        for param in self.mpi_conv.parameters():
-            param.requires_grad = False
-        for param in self.altblock[0].parameters():
-            param.requires_grad = False
-        for param in self.altblock[1].parameters():
-            param.requires_grad = False
-        for param in self.altblock[2].parameters():
-            param.requires_grad = False
-        for param in self.altblock[3].parameters():
-            param.requires_grad = False
+
         self.pixel_shuffle = nn.PixelShuffle(self.angRes)
         self.pixel_unshuffle = nn.PixelUnshuffle(self.angRes)
-        # checkpoint = torch.load('/data/LFSR/model/RCAN_5x5_4x_model.pth')
-        # new_state_dict = OrderedDict()
-        # for k, v in checkpoint['state_dict'].items():
-        #     new_state_dict[k] = v
-        # # load params
-        # self.RG1.load_state_dict(new_state_dict, strict=False)
-        # self.RG2.load_state_dict(new_state_dict, strict=False)
 
         ########################### UP-Sampling #############################
         self.upsampling = nn.Sequential(
@@ -78,8 +47,6 @@ class get_model(nn.Module):
             nn.LeakyReLU(0.2),
             nn.Conv2d(channels, 1, kernel_size=3, padding=1, bias=False),
         )
-        for param in self.upsampling.parameters():
-            param.requires_grad = False
 
     def forward(self, lr, info=None):
         lr = rearrange(lr, 'b c (u h) (v w) -> b c u v h w', u=self.angRes, v=self.angRes)
