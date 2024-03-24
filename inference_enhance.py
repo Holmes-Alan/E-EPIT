@@ -250,11 +250,6 @@ if __name__ == '__main__':
     args.minibatch_for_test = 4
 
 
-    # args.data_name = 'NTIRE_Val_Real'
-    # args.model_name = 'LFT'
-    # args.path_pre_pth = './pth/LFT_5x5_4x_model.pth'
-    # main(args)
-
     args.data_name = 'NTIRE_Test_Real'
     args.model_name = 'EPIT_bs'
     # args.path_pre_pth = '/data/LFSR/model/EPIT_5x5_4x_model.pth'
