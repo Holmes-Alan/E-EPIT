@@ -245,8 +245,8 @@ if __name__ == '__main__':
     args.scale_factor = 4
     args.angRes = 5
     args.path_for_test = './data_for_inference/'
-    args.stride_for_test = 16
-    args.patch_size_for_test = 32
+    args.stride_for_test = 32
+    args.patch_size_for_test = 64
     args.minibatch_for_test = 4
 
 
