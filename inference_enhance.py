@@ -252,6 +252,5 @@ if __name__ == '__main__':
 
     args.data_name = 'NTIRE_Test_Real'
     args.model_name = 'EPIT_bs'
-    # args.path_pre_pth = '/data/LFSR/model/EPIT_5x5_4x_model.pth'
     args.path_pre_pth = 'pth/EPIT_bs_5x5_4x.pth'
     main(args)
